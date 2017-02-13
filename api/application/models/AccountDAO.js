@@ -136,7 +136,9 @@ AccountDAO.prototype.readOneTransfer = function(req, res){
 /* Cria uma transferencia baseada no saldo*/ 
 AccountDAO.prototype.createTransfer = function(req,res){
 	var fromSaldo = req.body.meuSaldo;
+	var toSaldo = req.body.seuSaldo;
 	var valueTransfer = req.body.valor_transferido;
+
 
 	if(fromSaldo > valueTransfer){
 		var query = this._schema.build(req.body);
@@ -151,7 +153,31 @@ AccountDAO.prototype.createTransfer = function(req,res){
 			console.log('Erro: '+err);
 			res.status(200).json([{info: "É necessario passar todos os parametros"}]);
 
-		})
+		});
+
+		var Accounts = new this._app.config.DbConf().schemaAccount();
+		var deb = fromSaldo - valueTransfer;
+
+		Accounts.findOne({where: {cpf: req.body.from_user_cpf}})
+			.then(function(data){
+				console.log(JSON.stringify(data));
+				data.updateAttributes({saldo: deb})
+			})
+			.catch(function(err){
+				console.log('Erro: '+err);
+			}).done();
+
+		var cred = toSaldo + valueTransfer;
+		Accounts.findOne({where: {cpf: req.body.to_user_cpf}})
+			.then(function(data){
+				console.log(JSON.stringify(data));
+				data.updateAttributes({saldo: cred})
+			})
+			.catch(function(err){
+				console.log('Erro: '+err);
+			}).done();
+
+
 	}else{
 		res.status(200).json([{info: "Saldo insuficiente"}]);
 	}

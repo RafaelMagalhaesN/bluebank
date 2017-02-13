@@ -34,7 +34,6 @@ consign()
 	.into(app);
 
 
-
 /* Mensagem no console que o server esta online */
 console.log('Server em http://localhost:'+port); 
 

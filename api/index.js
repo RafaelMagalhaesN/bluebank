@@ -20,12 +20,14 @@ app.get('/', function(req, res){
 
 /* POST: Rota: localhost:porta/api */
 app.post('/api', function(req, res){
+	res.setHeader("Access-Control-Allow-Origin", "*");
 	var Accounts = new app.config.DbConf().schemaAccount();
 	new app.application.controllers.HomeController(app, Accounts).allAccounts(req, res);
 });
 
 /* GET: Rota: localhost:porta/api */
 app.get('/api', function(req, res){
+	res.setHeader("Access-Control-Allow-Origin", "*");
 	var Accounts = new app.config.DbConf().schemaAccount();
 	new app.application.controllers.HomeController(app, Accounts).allAccounts(req, res);
 });

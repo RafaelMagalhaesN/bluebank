@@ -1,0 +1,59 @@
+header{
+	width: 100%;
+	height: 100px;
+	background-color: #ADD8E6;
+	position: relative;
+}
+
+header .header-lightblue{
+	background-color: #00BFFF;
+	height: 20px;
+}
+
+#outer{
+    display: table;
+    border: 1px solid;
+    padding: 5px;
+}
+
+#btnContas {
+   margin-left: 0.2cm;
+    margin-top: 0.5cm;
+    margin-bottom: 0.5cm;
+    margin-right: 0.8cm;
+}
+
+#btnTransf {
+   margin-left: 0.2cm;
+    margin-top: 0.5cm;
+    margin-bottom: 0.5cm;
+    margin-right: 0.8cm;
+}
+
+#btnRealizarTransf {
+   margin-left: 0.2cm;
+    margin-top: 0.5cm;
+    margin-bottom: 0.5cm;
+    margin-right: 0.8cm;
+}
+
+
+.cabecalho{
+	background:#00BFFF;
+}
+
+.rightContainer{
+	text-align: right;
+	justify-content: right;
+}
+
+.bluebank{
+	text-align: top;
+	text-align: right;
+
+}
+
+.black{
+	background:#6495ED;
+	top: :20%;
+}

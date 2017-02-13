@@ -12,9 +12,11 @@
 2. Inciar o serviço do mysql local
 3. Alterar os parametros do arquivo do diretorio "bluebank/api/config/DbConf.js" da seguinte forma: 
 ![Alt text](db.png?raw=true "DbConf.js") 
+
 - Primeiro parametro (root): Inserir o username do seu usuario no mysql
 - Segundo parametro (root1): Inserir a senha do seu usuario no mysql 
-4. Acesse o terminal no diretorio da "bluebank/api"
+
+4. Acesse via terminal o diretorio da "bluebank/api"
 5. Insale as dependencias
 ```
 $ npm install
@@ -23,7 +25,7 @@ $ npm install
 ```
 $ node index.js
 ```
-Sua conexao vai estar aberta em: http://localhost:8080/
+Documentação da API: 
 
 ### CLIENT
 
