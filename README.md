@@ -25,12 +25,18 @@ $ npm install
 ```
 $ node index.js
 ```
-Documentação da API: 
+Entre no http://localhost:8080/ e faça os testes via api
+
 
 ### CLIENT
 
+1. Abrir via terminal a pasta client
+2. executar
+```
+$ node app
+```
 
-
+Entre no http://localhost:3000/ e faça os testes via client
 
 
 # Blue Bank - Instruções originais

@@ -53,30 +53,182 @@
 
 				$('#btnContas').click(function(){
 					$('#transferencias').hide();
+					$('#fazerTransf').hide();
 					$('#contas').show();
 				});
 
 				$('#btnTransf').click(function(){
-					$('#contas').hide();
 					$('#transferencias').show();
+					$('#fazerTransf').hide();
+					$('#contas').hide();
 				});
 
+				$('#btnRealizarTransf').click(function(){
+					$('#transferencias').hide();
+					$('#fazerTransf').show();
+					$('#contas').hide();
+				});
 
-
-			    function loadCpf(cpf){	
+				$('#btnBuscar').click(function(){
+					
+					var cpf = document.getElementById("cpf").value;
 					var xhr = new XMLHttpRequest();
+					console.log(cpf);
 					var data;
 					xhr.open("GET", "http://localhost:8080/cpf/"+cpf);
 					xhr.onload = function(){
 						if(xhr.status === 200){
-							 data = $.parseJSON(xhr.responseText);
-							 
-							}
-						}
-					
+							data = $.parseJSON(xhr.responseText);
+							console.log(data.usuario);
+							if(data.nome === undefined){
+								$('#meuCpf').append(
+									'</br><p class="bg-warning" id="errors">'+ 
+									data.usuario
+								);
+								
+							} else {
+							$('#botoesProcurarCpf').hide();
+							$('#cpf').hide();
+							$('#dadosFavorecido').show();
+							console.log(data.nome);
+							$('#meuCpf').append(
+								'</br><p class="bg-success" id="dados"> Depositante encontrado! </br> Nome: '+
+									data.nome + '</br> CPF: ' +
+									data.cpf + '</br> AGENCIA: ' +
+									data.agencia + '</br> CONTA: ' +
+									data.conta + '</br> BANCO:' +
+									data.banco + '</br> SALDO: R$' +
+									data.saldo + '</p>'+
+								
+									'<button id="a" type="button" value='+data.nome+' hidden="hidden"/>'+ 
+									'<button id="b" type="button" value='+data.cpf+' hidden="hidden"/>'+ 
+									'<button id="c" type="button" value='+data.agencia+' hidden="hidden"/>'+ 
+									'<button id="d" type="button" value='+data.conta+' hidden="hidden"/>'+ 
+									'<button id="e" type="button" value='+data.banco+' hidden="hidden"/>'+ 
+									'<button id="f" type="button" value='+data.saldo+' hidden="hidden"/>'+ 
+									'<button id="g" type="button" value='+data.id+' hidden="hidden"/>'
+								);
+							}	
+						} 
+						
+					}
 					xhr.send();
 					
-				}
+				
+				});
+
+				$('#btnTranferirDinheiro').click(function(){
+					var valor_transferido = document.getElementById("valueTransferido").value;
+					var from_user_nome = $("#a").val();
+					var from_user_cpf = $("#b").val();
+					var from_user_agencia = $("#c").val();
+					var from_user_conta = $("#d").val();
+					var from_user_banco = $("#e").val();
+					var meuSaldo = $("#f").val();
+					var from_user_id = $("#g").val();
+					var to_user_nome = $("#h").val();
+					var to_user_cpf = $("#i").val();
+					var to_user_agencia = $("#j").val();
+					var to_user_conta = $("#k").val();
+					var to_user_banco = $("#l").val();
+					var seuSaldo = $("#m").val();
+					var to_user_id = $("#n").val();
+					console.log(JSON.stringify(to_user_cpf));
+
+					var values = {
+								  from_user_id :from_user_id,
+								  from_user_cpf : from_user_cpf,
+								  from_user_agencia : from_user_agencia,
+								  from_user_conta : from_user_conta,
+								  from_user_banco :from_user_banco,
+								  valor_transferido : valor_transferido,
+								  to_user_id :to_user_id,
+								  to_user_cpf : to_user_cpf,
+								  to_user_agencia : to_user_agencia,
+								  to_user_conta : to_user_conta,
+								  to_user_banco :to_user_banco,
+								  meuSaldo : meuSaldo,
+								  seuSaldo : seuSaldo
+								 };
+		
+
+					var xhr = new XMLHttpRequest();
+					xhr.open('PUT', 'http://localhost:8080/transferencias');
+					xhr.setRequestHeader('Content-Type', 'application/json');
+				
+
+					xhr.onload = function(){
+						if(xhr.status === 200){
+							$('#botoesProcurarCpf').hide();
+							$('#cpf').hide();
+							$('#dadosFavorecido').hide();
+							$("#trasnferenciaFechada").show();
+							data = $.parseJSON(xhr.responseText);
+							console.log(data);
+							if(data.info === undefined){
+								$('#transferenciaCompleta').append(
+									'</br><p class="bg-success" id="dados"> Transferencia realizada, por gentileza, atualize a pagina!</p>'
+									);
+							}else{
+								$('#transferenciaCompleta').append(
+									'</br><p class="bg-danger" id="dados">'+ data.info +' </br> Atualize a pagina e tente novamente</p>'
+									);
+
+							}
+						}
+					}
+					
+					xhr.send(JSON.stringify(values));
+
+				});
+
+				$('#btnBuscarFavorecido').click(function(){
+					
+					var cpf = document.getElementById("cpfDestino").value;
+					var xhr = new XMLHttpRequest();
+					console.log(cpf);
+					var data;
+					xhr.open("GET", "http://localhost:8080/cpf/"+cpf);
+					xhr.onload = function(){
+						if(xhr.status === 200){
+							data = $.parseJSON(xhr.responseText);
+							console.log(data.usuario);
+							if(data.nome === undefined){
+								$('#meuCpf').append(
+									'</br><p class="bg-warning" id="errors">'+ 
+									data.usuario
+								);
+								
+							} else {
+							$('#botoesProcurarCpfFavor').hide();
+							$('#cpfDestino').hide();
+							$('#valoresASeremTransferidos').show();
+														
+							console.log(data.nome);
+							$('#meuCpf').append(
+								'</br><p class="bg-info" id="dados"> Favorecido encontrado! </br> Nome: '+
+									data.nome + '</br> CPF: ' +
+									data.cpf + '</br> AGENCIA: ' +
+									data.agencia + '</br> CONTA: ' +
+									data.conta + '</br> BANCO:' +
+									data.banco + '</br> SALDO: R$' +
+									data.saldo + '</p>'+
+									'<button id="h" type="button" value='+data.nome+' hidden="hidden"/>'+ 
+									'<button id="i" type="button" value='+data.cpf+' hidden="hidden"/>'+ 
+									'<button id="j" type="button" value='+data.agencia+' hidden="hidden"/>'+ 
+									'<button id="k" type="button" value='+data.conta+' hidden="hidden"/>'+ 
+									'<button id="l" type="button" value='+data.banco+' hidden="hidden"/>'+ 
+									'<button id="m" type="button" value='+data.saldo+' hidden="hidden"/>'+ 
+									'<button id="n" type="button" value='+data.id+' hidden="hidden"/>'
+								);
+							}	
+						} 
+						
+					}
+					xhr.send();
+					
+				
+				});
 
 
 				function loadAllTransfers(){	
@@ -194,8 +346,93 @@
 		</div>
 		</div>
 
+		<div id="fazerTransf" style="display:none">
+		<div class="container"  id="container_form">
+			<div class="panel panel-default">
+
+			<div class="panel-heading"><h4>Realizar uma transferencia</h4></div>
+			
+			<div class="panel-body">
+				<div class="form-group">
+					<input type="text" name="cpf" id="cpf" class="form-control" placeholder="Digite o seu cpf do depositante" autocomplete="off" required="true">
+				</div>
+
+				<div id="botoesProcurarCpf">
+					<button class="btn btn-success" id="btnBuscar">Buscar</button>
+					<button class="btn btn-danger" id="btn-cancelar-publicacao">Cancelar</button>
+				</div>
+
+				<div id="meuCpf"></div>
+			</div>
+			
+		</div>
+		</div>
+
+		<div id="dadosFavorecido" style="display:none">
+		<div class="container"  id="container_form">
+			<div class="panel panel-default">
+
+			<div class="panel-heading"><h4>Realizar uma transferencia</h4></div>
+			
+			<div class="panel-body">
+				<div class="form-group">
+					<input type="text" name="cpfDestino" id="cpfDestino" class="form-control" placeholder="Digite o seu cpf do favorecido" autocomplete="off" required="true">
+				</div>
+
+				<div id="botoesProcurarCpfFavor">
+					<button class="btn btn-success" id="btnBuscarFavorecido">Buscar</button>
+					<button class="btn btn-danger" id="btn-cancelar-publicacao">Cancelar</button>
+				</div>
+
+				<div id="favorecidoCpf"></div>
+			</div>
+			
+		</div>
+		</div>
 
 
+
+		<div id="valoresASeremTransferidos" style="display:none">
+		<div class="container"  id="container_form">
+			<div class="panel panel-default">
+
+			<div class="panel-heading"><h4>Realizar uma transferencia</h4></div>
+			
+			<div class="panel-body">
+				<div class="form-group">
+					
+				  <div class="form-group">
+				    <label class="sr-only" for="valueTransferido">Valores</label>
+				    <div class="input-group">
+				      <div class="input-group-addon">R$</div>
+				      <input type="text" class="form-control" id="valueTransferido" placeholder="Valor em reais" pattern="[0-9]" required="true">
+				      <div class="input-group-addon">.00</div>
+				    </div>
+				  </div>
+				  <button  class="btn btn-primary" id="btnTranferirDinheiro" >Transferir o dinheiro</button>
+				
+				</div>
+
+				<div id="botoesProcurarCpfFavor">
+					
+					<button class="btn btn-danger" id="btn-cancelar-publicacao">Cancelar</button>
+				</div>
+				</div>
+
+				<div id="favorecidoCpf"></div>
+			</div>
+		</div>
+
+</div>
+</div>
+</div>
+
+			<div id="trasnferenciaFechada" style="display:none">
+		
+				<div id="transferenciaCompleta"></div>
+			</div>
+			
+		
 		
 		<script type= "text/javascript" src="bootstrap/js/bootstrap.min.js"></script>		
 	</body>

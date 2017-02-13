@@ -86,12 +86,12 @@ AccountDAO.prototype.readOneAccountCpf = function(req, res){
 				if(data != null){
 					res.status(200).json(data);
 				}else{
-					res.status(200).json([{usuario: "Não foi encontrado nenhum usuario"}]);
+					res.status(200).json({usuario: "Não foi encontrado nenhum usuario"});
 				}
 			})
 			.catch(function(err){
 				console.log('Erro: '+err);
-				res.status(200).json([{info: "É necessario passar todos os parametros"}]);
+				res.status(200).json({info: "É necessario passar todos os parametros"});
 			}).done();
 
 }

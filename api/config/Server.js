@@ -20,6 +20,13 @@ app.set('views', './application/views');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(expressValidator());
+app.use(function(req, res, next){
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
+	res.setHeader("Access-Control-Allow-Headers", "content-type");
+	res.setHeader("Access-Control-Allow-Credentials", true);
+	next();
+})
 
 /* Configuraçao da porta */
 var port = 8080;
@@ -32,6 +39,7 @@ consign()
 	.then('config/DbData.js')
 	.then('application/models')
 	.into(app);
+
 
 
 /* Mensagem no console que o server esta online */
