@@ -5,7 +5,11 @@
 /* Import do sequelize */
 var Sequelize = require('sequelize');
 
-/* Configuração do sequelize */ 
+/* Configuração do sequelize */
+/*
+* Necessario alterar os parametros username do mysql = 'root'; password do mysql = 'root1'
+* Necessario a alteração dos valores com a senha e login do seu banco
+*/ 
 var sequelize = new Sequelize('bluebank', 'root','root1', {
 	host:  'localhost',
 	port: 3306,
