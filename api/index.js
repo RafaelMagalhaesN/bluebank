@@ -102,8 +102,5 @@ app.get('/transferencias/:id', function(req, res){
 	new app.application.controllers.HomeController(app, Transfer).oneTransfer(req, res);
 });
 
-app.get('/api/transferencias', function(req, res){
-	res.send('teste');
-});
 
 

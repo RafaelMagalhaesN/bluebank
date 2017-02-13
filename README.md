@@ -16,10 +16,12 @@
 - Segundo parametro (root1): Inserir a senha do seu usuario no mysql 
 4. Acesse o terminal no diretorio da "bluebank/api"
 5. Insale as dependencias
-```$ npm install
+```
+$ npm install
+```
 6. Rode o servidor
 ```
-$ node index
+$ node index.js
 ```
 Sua conexao vai estar aberta em: http://localhost:8080/
 
@@ -29,7 +31,7 @@ Sua conexao vai estar aberta em: http://localhost:8080/
 
 
 
-# Blue Bank - Instrucoes originais
+# Blue Bank - Instruções originais
 Blue Bank é um projeto para testar seus conhecimentos de backend e frontend.
 
 Você irá criar uma aplicação web para simular a transferência bancária entre contas cadastradas.
