@@ -1,0 +1,83 @@
+[
+	
+	{
+		"cpf" :  "495.749.358-58",
+		"nome" : "Lionel Lessi",
+		"agencia" : "258",
+		"conta" : "1593579-5",
+		"banco" : "Barcelona International Bank",
+		"saldo" : "4500" 
+	},
+	{
+		"cpf" :  "498.754.398-42",
+		"nome" : "Josimar Junior",
+		"agencia" : "459",
+		"conta" : "1595579-5",
+		"banco" : "Barcelona International Bank",
+		"saldo" : "3500" 
+	},{
+		"cpf" :  "423.454.468-65",
+		"nome" : "Hicardo Oniveira",
+		"agencia" : "459",
+		"conta" : "4895679-8",
+		"banco" : "Saints Bank",
+		"saldo" : "1900" 
+	},
+	{
+		"cpf" :  "158.894.398-22",
+		"nome" : "Jesus de Gabriel",
+		"agencia" : "258",
+		"conta" : "91595459-8",
+		"banco" : "Green to city Bank",
+		"saldo" : "2000" 
+	},
+	{
+		"cpf" :  "248.489.318-62",
+		"nome" : "Rogerio Senn't",
+		"agencia" : "758",
+		"conta" : "1055469-5",
+		"banco" : "Saint-Paul International Bank",
+		"saldo" : "1800" 
+	},
+	{
+		"cpf" :  "111.744.348-25",
+		"nome" : "Kláucio Ramos",
+		"agencia" : "238",
+		"conta" : "4898579-2",
+		"banco" : "Da'Fiel Bank",
+		"saldo" : "1800" 
+	},
+	{
+		"cpf" :  "198.523.458-42",
+		"nome" : "Ruiz Soarez",
+		"agencia" : "518",
+		"conta" : "15489579-5",
+		"banco" : "Barcelona International Bank",
+		"saldo" : "3500" 
+	},
+	{
+		"cpf" :  "148.523.418-82",
+		"nome" : "Pilé Arantis do Nascimento",
+		"agencia" : "418",
+		"conta" : "2544569-5",
+		"banco" : "Mundial Bank of Gods",
+		"saldo" : "15000" 
+	},
+	{
+		"cpf" :  "108.783.418-82",
+		"nome" : "Maré Garrincho",
+		"agencia" : "418",
+		"conta" : "15448979-5",
+		"banco" : "Mundial Bank of Gods",
+		"saldo" : "15000" 
+	},
+	{
+		"cpf" :  "548.563.498-12",
+		"nome" : "Cristian Ronald",
+		"agencia" : "438",
+		"conta" : "78444569-5",
+		"banco" : "Madrid Bank",
+		"saldo" : "5000" 
+	}
+
+]

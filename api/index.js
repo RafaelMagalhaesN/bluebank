@@ -7,12 +7,12 @@
 var app = require('./config/Server');
 
 console.log('Server online!');
-
-/* Conexao com o banco de dados */
-app.config.DbConnection.conn;
+new app.config.DbConf(app).createTable();
+new app.config.DbData(app).createData();
 
 app.get('/', function(req, res){
 	res.send('teste');
+	
 });
 
 app.post('/', function(req, res){

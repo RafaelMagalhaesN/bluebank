@@ -28,7 +28,8 @@ app.listen(port);
 /* Autoload */
 consign()
 	.include('application/controllers')
-	.then('config/DbConnection.js')
+	.then('config/DbConf.js')
+	.then('config/DbData.js')
 	.then('application/models')
 	.into(app);
 
