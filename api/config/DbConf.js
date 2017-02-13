@@ -25,12 +25,12 @@ sequelize.authenticate()
 /* Schema da table Contas */
 var Account = sequelize.define('Contas', {
 	id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true }, 
-	nome: Sequelize.STRING,
+	nome: {type: Sequelize.STRING, allowNull: false},
 	cpf: {type: Sequelize.STRING, unique: true, allowNull: false},
-	agencia: Sequelize.STRING,
+	agencia: { type: Sequelize.STRING, allowNull: false },
 	conta: {type: Sequelize.STRING, unique: true, allowNull: false}, 
-	banco: Sequelize.STRING,
-	saldo: Sequelize.INTEGER,
+	banco: {type: Sequelize.STRING, allowNull: false},
+	saldo: {type: Sequelize.INTEGER, allowNull: false, defaultValue: "0"} 
 },{timestamps: false});
 sequelize.sync().done();
 
