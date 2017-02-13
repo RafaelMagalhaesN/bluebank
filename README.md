@@ -1,4 +1,33 @@
-# Blue Bank
+# Blue Bank - Instruçoes
+
+## Requisitos minimos e/ou softwares pré instalados para o deploy da api e do client localmente:
+1. Node.Js
+2. Npm
+3. MySql 
+
+## Instruções
+
+### API
+1. Realizar o clone do projeto para seu desktop
+2. Inciar o serviço do mysql local
+3. Alterar os parametros do arquivo do diretorio "bluebank/api/config/DbConf.js" da seguinte forma: 
+![Alt text](db.jpg?raw=true "DbConf.js") 
+- Primeiro parametro (root): Inserir o username do seu usuario no mysql
+- Segundo parametro (root1): Inserir a senha do seu usuario no mysql 
+4. Acesse o terminal no diretorio da "bluebank/api"
+5. Insale as dependencias
+```$ npm install
+6. Rode o servidor
+```$ node index
+Sua conexao vai estar aberta em: http://localhost:8080/
+
+### CLIENT
+
+
+
+
+
+# Blue Bank - Instrucoes originais
 Blue Bank é um projeto para testar seus conhecimentos de backend e frontend.
 
 Você irá criar uma aplicação web para simular a transferência bancária entre contas cadastradas.
