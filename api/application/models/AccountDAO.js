@@ -140,7 +140,7 @@ AccountDAO.prototype.createTransfer = function(req,res){
 	var valueTransfer = req.body.valor_transferido;
 
 
-	if(fromSaldo > valueTransfer){
+	if(fromSaldo >= valueTransfer){
 		var query = this._schema.build(req.body);
 		query.save().then(function(data){
 			if(data != null){
@@ -156,7 +156,7 @@ AccountDAO.prototype.createTransfer = function(req,res){
 		});
 
 		var Accounts = new this._app.config.DbConf().schemaAccount();
-		var deb = fromSaldo - valueTransfer;
+		var deb = parseInt(fromSaldo) - parseInt(valueTransfer);
 
 		Accounts.findOne({where: {cpf: req.body.from_user_cpf}})
 			.then(function(data){
@@ -167,7 +167,7 @@ AccountDAO.prototype.createTransfer = function(req,res){
 				console.log('Erro: '+err);
 			}).done();
 
-		var cred = toSaldo + valueTransfer;
+		var cred = parseInt(toSaldo) + parseInt(valueTransfer);
 		Accounts.findOne({where: {cpf: req.body.to_user_cpf}})
 			.then(function(data){
 				console.log(JSON.stringify(data));

@@ -18,7 +18,7 @@
 					xhr.onload = function(){
 						if(xhr.status === 200){
 							var data = $.parseJSON(xhr.responseText);
-							console.log(data);
+	
 
 							for(i = 0; i< data.length; i++){
 								$('#clients').append(
@@ -60,6 +60,69 @@
 					$('#contas').hide();
 					$('#transferencias').show();
 				});
+
+
+
+			    function loadCpf(cpf){	
+					var xhr = new XMLHttpRequest();
+					var data;
+					xhr.open("GET", "http://localhost:8080/cpf/"+cpf);
+					xhr.onload = function(){
+						if(xhr.status === 200){
+							 data = $.parseJSON(xhr.responseText);
+							 
+							}
+						}
+					
+					xhr.send();
+					
+				}
+
+
+				function loadAllTransfers(){	
+					var xhr = new XMLHttpRequest();
+					xhr.open("GET", "http://localhost:8080/transferencias");
+					xhr.onload = function(){
+						if(xhr.status === 200){
+							var data = $.parseJSON(xhr.responseText);
+
+							for(i = 0; i< data.length; i++){
+
+								$('#tableTransferencias').append(
+									'<tr>'+
+										'<td>'+
+										 data[i].from_user_cpf  +
+										'</td>' + 
+										'<td>'+
+										data[i].from_user_agencia + '/' + data[i].from_user_conta +
+										'</td>'+
+										'<td>'+
+										data[i].from_user_banco+ 
+										'</td>'+
+										'<td>'+
+										 data[i].to_user_cpf  +
+										'</td>' + 
+										'<td>'+
+										data[i].to_user_agencia + '/' + data[i].to_user_conta +
+										'</td>'+
+										'<td>'+
+										data[i].to_user_banco+ 
+										'</td>'+
+										'<td>'+
+										data[i].createdAt+ 
+										'</td>'+
+										'<td>'+
+										 'R$ '+ data[i].valor_transferido+ 
+										'</td>'+
+									'</tr>'
+								);
+								
+							}
+						}
+					}
+					xhr.send();
+				}
+				loadAllTransfers();
 
 
 			});
@@ -113,14 +176,15 @@
 
 			<div class="panel-heading"><h4>Historico de transferencias</h4></div>
 			
-			<table class="table table-hover" id="transferencias">
+			<table class="table table-hover" id="tableTransferencias">
 				<tr>
-					<th>Nome do depositante</th>
 					<th>CPF do depositante</th>
 					<th>AG/Conta do depositante</th>
-					<th>Nome do favorecido</th>
+					<th>Banco depositante</th>
 					<th>CPF do favorecido</th>
 					<th>AG/Conta do favorecido</th>
+					<th>Banco do favorecido</th>
+					<th>Movimentação realizada em</th>
 					<th>Valor da transferencia</th>
 				</tr>
 
