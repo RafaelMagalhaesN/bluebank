@@ -9,7 +9,7 @@
 
 ### API
 1. Realizar o clone do projeto para seu desktop
-1.a. Entrar nos diretorios /api e /client e baixar as dependencias (npm install)
+1. a. Entrar nos diretorios /api e /client e baixar as dependencias (npm install)
 2. Inciar o serviço do mysql local
 3. Alterar os parametros do arquivo do diretorio "bluebank/api/config/DbConf.js" da seguinte forma: 
 ![Alt text](db.png?raw=true "DbConf.js") 
